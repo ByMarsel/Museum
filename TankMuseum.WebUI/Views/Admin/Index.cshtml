@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Domain.Entities.Exhibit>
+@{   ViewBag.Title = "Admin: All Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
+    } 
+<h1>Все экспонаты</h1>
+<table class="Grid">   
+    <tr>     
+    <th>ID</th>     
+    <th>Наименование</th>     
+    <th class="NumericCol">Количество на складе</th>     
+    <th>Действия</th>   
+    </tr>   
+    @foreach (var item in Model)
+{
+    <tr>       
+    <td>@item.ExhibitID</td>       
+    <td>@Html.ActionLink(item.Name, "Edit", new { item.ExhibitID })</td>       
+    <td class="NumericCol">@item.Availability</td>       
+    <td>         
+        @using (Html.BeginForm("Delete", "Admin")){           
+            @Html.Hidden("ExhibitID", item.ExhibitID)           
+            <input type="submit" value="Delete" />         
+        }       
+        </td>     
+    </tr>   
+    } 
+    </table> 
+<p>@Html.ActionLink("Добавить", "Create")</p> 
+<p>@Html.ActionLink("Вернуться в каталог", "List","Exhibit")

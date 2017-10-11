@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div id="header">     
+    <div class="title">Музей военной техники</div>         
+    </div>  
+    <a href="~/Admin/Index" class="adminlink">Страница администратора</a> 
+    <div class="categories">@{Html.RenderAction("Menu", "Nav");}</div>   
+    <div id="content">@RenderBody()</div>
+   
+</body>
+</html> 

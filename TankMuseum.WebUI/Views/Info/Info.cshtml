@@ -1,0 +1,10 @@
+﻿@model Domain.Entities.Exhibit
+@if (Model.ImageData != null)
+{
+<div style="float: left; margin-right: 20px">
+    <img width="500" height="500" src="@Url.Action("GetImage", "Exhibit", new { Model.ExhibitID })" />
+</div> 
+}
+<h3 class="infoName">@Model.Name</h3>
+<p class="infoDescription">@Model.Description</p>
+<a href="@TempData["returnUrl"]">Вернуться к списку</a>

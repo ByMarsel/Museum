@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Domain.Entities.Exhibit>
+
+@Html.ActionLink("Начальная страница", "List", "Exhibit")
+
+@foreach (var link in Model.Select(x => x.Category).Distinct().OrderBy(x => x))
+{
+    <div>
+
+        @Html.RouteLink(link, new
+       {
+           controller = "Exhibit",
+           action = "List",
+           category = link,
+           page = 1
+       },
+    new
+    {
+        @class = link == ViewBag.SelectedCategory ? "selected" : null
+    })
+
+
+
+        @foreach (var subCategoryLink in Model.Where(p => p.Category == link).Distinct().OrderBy(x => x.Subcategory))
+        {
+
+        @Html.RouteLink(subCategoryLink.Subcategory, new
+   {
+       controller = "Exhibit",
+       action = "List",
+       category = link,
+       subcategory = subCategoryLink.Subcategory,
+       page = 1
+   },
+        new
+        {
+            @class = "subcategory",
+            id = subCategoryLink.Subcategory == ViewBag.SelectedSubCategory ? "selected" : null
+        })
+
+
+        }
+    </div>
+
+}
+

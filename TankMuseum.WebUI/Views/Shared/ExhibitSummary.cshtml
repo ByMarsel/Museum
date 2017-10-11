@@ -1,0 +1,13 @@
+﻿@model Domain.Entities.Exhibit
+<div class="item" onclick="window:location='@Url.Action("Info" ,"Info", new { Model.ExhibitID })'">
+    @if (Model.ImageData != null)
+    {     
+    <div style="float: left; margin-right: 20px">       
+    <img width="150" height="150" src="@Url.Action("GetImage", "Exhibit", new { Model.ExhibitID })" />     
+    </div>   
+    }    
+    <h3>@Model.Name</h3>   
+    <p class="description">@Model.Description</p>   
+    <h4>Количество в музее: @Model.Availability</h4> 
+   
+</div> 
